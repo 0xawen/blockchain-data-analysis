@@ -4,6 +4,8 @@
 
 how to fetch block data？how to do system design?
 
+以太坊官网： https://ethereum.org/zh/
+
 
 
 ## 全节点建设和维护
@@ -31,7 +33,7 @@ todo
 
 
 
-## 以太坊的gateway服务
+## 以太坊的gateway服务[可选]
 
 【负责解析和获取实时区块数据，保证低延迟和高可用】
 
@@ -47,8 +49,6 @@ todo
 
 
 ## 以太坊的数据采集分析服务
-
-【负责公司行情相关的研发开发，配合数据团队完成项目需求】
 
 how to get data  and  how to analyze?
 
@@ -66,13 +66,205 @@ how to get data  and  how to analyze?
 
 
 
-### 相同类型公司
+### 以太坊的数据 - 有什么数据
 
-他们有哪些？他们可以提供那些数据？他们是如果做的？我们可以学习些什么
+【eth2.0】
+
+1. execution data 
+2. consnesus layer data
+
+#### 执行层的数据
+
+##### block
+
+```
+block height
+timestamp
+transaction
+fee recipient
+block reward
+size
+gas used
+gas limited
+base fee per gas 
+burnt fee
+extra data
+hash
+parent hash
+state root
+```
+
+##### gas
+
+```
+Estimated units of gas needed for a safe but slow transaction (+ estimated price and duration)
+Estimated units of gas needed for an average transaction (+ estimated price and duration)
+Estimated units of gas needed for a fast transaction (+ estimated price and duration)
+Average confirmation time based on gas price
+Contracts that are consuming gas - in other words, popular products that are seeing lots of usage on the network
+Accounts that are spending gas - in other words, frequent network users
+Transactions
+```
+
+##### tx
+
+```
+transaction hash
+status
+block
+timestamp
+from
+to
+tokens transferred
+value  The total ETH value being transferred
+transaction fee
+gas limited
+gas used
+gas price
+nonce
+input data 可以理解为调用合约输入的数据
+```
+
+##### account
+
+- 用户账号
+
+```
+accont address
+eth balance
+total eth value
+tokens
+transaction history
+```
+
+- 合约账号
+
+```
+继承用户
+contract create
+creation transaction
+source code 
+contract abi
+conract creation code
+contract events
+```
+
+##### tokens
+
+```
+Type - erc20,erc721
+price
+market cap (price * total supply)
+holders
+transfers
+transaction history
+contract address
+decimals
+```
+
+##### network
+
+```
+Total transactions
+Transactions per second
+ETH price
+Total ETH supply
+Market cap
+```
+
+#### 共识层数据
+
+##### epoch
+
+6.4分钟创建一个
+
+```
+epoch number
+Finalized statu  最终状态
+time epoch结束的时间
+Attestations  - The number of attestations in the epoch (votes for blocks within slots)
+deposits
+slashings 惩罚数据
+Voting participation 
+Validators 
+Average Validator balance 
+Slots - Number of slots included in the epoch (slots include one valid block)
+```
+
+##### slot
+
+```
+Slots are opportunities for block creation, the data available for each slot includes:
+
+Epoch - The epoch in which the slot is valid
+Slot number
+Status - The status of the slot (Proposed/Missed)
+Time - The slot timestamp
+Proposer - The validator that proposed the block for the slot
+Block root - The hash-tree-root of the BeaconBlock
+Parent root - The hash of the block that came before
+State root - The hash-tree-root of the BeaconState
+Signature
+Randao reveal
+Graffiti - A block proposer can include 32 byte long message to its block proposal
+Execution Data
+Block hash
+Deposit count
+Deposit root
+Attestations - Number of attestations for the block in this slot
+Deposits - The number of deposits during this slot
+Voluntary exits - The number of validators that left during the slot
+Slashings - Number of penalties given to proposers of blocks or attestors
+Votes - The validators that voted for the block in this slot
+```
+
+##### validators
+
+```
+Validator number - Unique number that represents the validator
+Current balance - The validator's balance including rewards
+Effective balance - The validator's balance that is used for staking
+Income - The rewards or penalties received by the validator
+Status - Whether the validator is currently online and active or not
+Attestation effectiveness - The average time it takes for the validator's attestations to be included in the chain
+Eligibility for activation - Date (and epoch) when the validator became available to validate
+Active since - Date (and epoch) when the validator became active
+Proposed blocks - The block that the validator has proposed
+Attestations - The attestations that the validator has provided
+Deposits - The from address, transaction hash, block number, timestamp, amount and status of the staking deposit made by the validat
+```
+
+##### attestations
+
+```
+Attestations are "yes" votes to include blocks in the chain. Their data relates to a record of the attestation and the validators who attested
+
+Slot - The slot in which the attestation took place
+Committee index - The index of the committee at the given slot
+Aggregation bits - Represents the aggregated attestation of all participating validators in the attestation
+Validators - The validators that provided attestations
+Beacon block root - Points to the block to which validators are attesting
+Source - Points to the latest justified epoch
+Target - Points to the latest epoch boundary
+Signature
+```
+
+##### network
+
+```
+Current epoch
+Current slot
+Active validators - Number of active validators
+Pending validators - Number of validators waiting for to be made active
+Staked ETH - Amount of ETH staked in the network
+Average balance - Average ETH balance of validators
+```
 
 
 
-### step 1 熟悉以太坊的`api`
+
+
+### 以太坊的`api` - 如何获取数据
 
 以太坊`api`文档：
 
@@ -85,7 +277,35 @@ https://ethereum.github.io/execution-apis/api-documentation/
 
 
 
-### step 2 处理数据
+### 处理以太坊数据- 怎么处理
+
+#### googel的链数据分析系列文章
+
+【*谷歌出的文章，必读】
+
+https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset
+
+https://github.com/blockchain-etl/ethereum-etl-airflow
+
+【区块链数据提取转换加载架构】
+
+https://github.com/blockchain-etl/blockchain-etl-architecture
+
+![](img/blockchain_etl_architecture.svg)
+
+![](./img/extra-data.png)
+
+![](./img/load_data.png)
+
+#### 以太坊基金关于链数据挑战赛的结果
+
+链接：https://blog.ethereum.org/2020/11/17/medalla-data-challenge-results
+
+有非常好的数据分析项目，可以详细阅读。
+
+
+
+
 
 #### 数据采集工具
 
@@ -101,23 +321,13 @@ https://github.com/curvegrid/toy-block-explorer
 
 
 
-【*谷歌的文章，必读】
 
-https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset
 
-https://github.com/blockchain-etl/ethereum-etl-airflow
 
-【区块链数据提取转换加载架构】
-
-https://github.com/blockchain-etl/blockchain-etl-architecture
-
-![](img/blockchain_etl_architecture.svg)
 
 
 
 另一个etl的示例：【https://github.com/san089/goodreads_etl_pipeline】
-
-
 
 
 
@@ -139,6 +349,10 @@ https://github.com/JadeYeung/Solidity-utils
 
 
 
+### 相同类型公司
+
+他们有哪些？他们可以提供那些数据？他们是如果做的？我们可以学习些什么
+
 #### 数据分类
 
 1. 网络数据
@@ -152,8 +366,6 @@ https://github.com/JadeYeung/Solidity-utils
 
 
 ## 智能合约的开发
-
-【负责智能合约的统计和分析等研发工作，解决各种疑难问题】
 
 关于智能合约开发更新在个人网站中。
 
@@ -187,7 +399,7 @@ https://github.com/JadeYeung/Solidity-utils
 
 
 
-##### 智能合约开发的模式
+#### 智能合约开发的模式
 
 - Dappsys：安全，简单和灵活的以太坊合约构建模块
   - 有针对以太坊/Solidity常见问题的解决方案，例如。
