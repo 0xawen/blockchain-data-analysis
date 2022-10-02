@@ -6,30 +6,41 @@ how to fetch block data？how to do system design?
 
 以太坊官网： https://ethereum.org/zh/
 
+## 以太坊基础 
+
+在思考怎么提取以太坊数据的时候，我发现我对以太坊不太了解。
+
+主要原因时以太升级后，一些数据，工具等不太了解。
+
+https://ethereum.org/zh/developers/docs/networks/
+
 
 
 ## 全节点建设和维护
 
-【负责行情节点服务器等基础设施的管理和维护】
+以太坊节点与客户端指南：https://www.coindesk.com/learn/ethereum-nodes-and-clients-a-complete-guide/
 
-https://ethereum.org/zh/developers/docs/networks/
+### 节点搭建与监控
 
-- chainstack 节点服务提供商
-- 自建节点 -  https://docs.dappnode.io/
+- 执行客户端（geth）
 
-### 节点搭建
+- 共识客户端（信标链）
 
-todo
+官网文档： https://ethereum.org/zh/developers/docs/nodes-and-clients/run-a-node/
 
-### 节点监控
+ethub: https://docs.ethhub.io/using-ethereum/running-an-ethereum-node/
 
-todo
-
+nimbus: https://nimbus.guide/quick-start.html
 
 
-### 测试节点的搭建
+
+### 搭建节点问题汇总
+
+https://blog.csdn.net/Lyon_Nee/article/details/112273194
 
 
+
+### 搭建测试节点
 
 
 
@@ -297,7 +308,9 @@ https://github.com/blockchain-etl/blockchain-etl-architecture
 
 ![](./img/load_data.png)
 
-#### 以太坊基金关于链数据挑战赛的结果
+
+
+#### 以太坊基金关于链数据挑战赛的博客
 
 链接：https://blog.ethereum.org/2020/11/17/medalla-data-challenge-results
 
@@ -318,8 +331,6 @@ https://github.com/blockchain-etl/blockchain-etl-architecture
 https://github.com/vulcanize
 
 https://github.com/curvegrid/toy-block-explorer
-
-
 
 
 
@@ -349,7 +360,7 @@ https://github.com/JadeYeung/Solidity-utils
 
 
 
-### 相同类型公司
+### 相同类型产品
 
 他们有哪些？他们可以提供那些数据？他们是如果做的？我们可以学习些什么
 
@@ -368,8 +379,6 @@ https://github.com/JadeYeung/Solidity-utils
 ## 智能合约的开发
 
 关于智能合约开发更新在个人网站中。
-
-
 
 ### 智能合约标准和类库
 
