@@ -6,6 +6,12 @@ how to fetch block data？how to do system design?
 
 以太坊官网： https://ethereum.org/zh/
 
+ethhub:  https://docs.ethhub.io
+
+geth: https://geth.ethereum.org/
+
+
+
 ## 以太坊基础 
 
 在思考怎么提取以太坊数据的时候，我发现我对以太坊不太了解。
@@ -20,17 +26,37 @@ https://ethereum.org/zh/developers/docs/networks/
 
 以太坊节点与客户端指南：https://www.coindesk.com/learn/ethereum-nodes-and-clients-a-complete-guide/
 
-### 节点搭建与监控
+### 全节点架构
+
+- 共识客户端（信标链）
 
 - 执行客户端（geth）
 
-- 共识客户端（信标链）
+![](../img/client-architecture.png)
 
 官网文档： https://ethereum.org/zh/developers/docs/nodes-and-clients/run-a-node/
 
 ethub: https://docs.ethhub.io/using-ethereum/running-an-ethereum-node/
 
 nimbus: https://nimbus.guide/quick-start.html
+
+### beacon(共识层)
+
+api:  https://github.com/ethereum/beacon-APIs
+
+how to install and run a beacon node:https://www.quicknode.com/guides/infrastructure/how-to-install-and-run-a-prysm-beacon-node
+
+作用： proposal block; handling consensus logic;
+
+
+
+### geth(执行层)
+
+api: https://ethereum.github.io/execution-apis/api-documentation
+
+doc: https://geth.ethereum.org/
+
+作用： tranactions handling, evm
 
 
 
@@ -39,8 +65,6 @@ nimbus: https://nimbus.guide/quick-start.html
 https://blog.csdn.net/Lyon_Nee/article/details/112273194
 
 
-
-### 搭建测试节点
 
 
 
@@ -79,12 +103,10 @@ how to get data  and  how to analyze?
 
 ### 以太坊的数据 - 有什么数据
 
-【eth2.0】
-
 1. execution data 
 2. consnesus layer data
 
-#### 执行层的数据
+#### 执行层的数据 - geth
 
 ##### block
 
@@ -183,6 +205,8 @@ Total ETH supply
 Market cap
 ```
 
+
+
 #### 共识层数据
 
 ##### epoch
@@ -273,18 +297,17 @@ Average balance - Average ETH balance of validators
 
 
 
-
-
 ### 以太坊的`api` - 如何获取数据
 
-以太坊`api`文档：
+- 执行层
 
-https://github.com/ethereum/execution-apis)
+https://github.com/ethereum/execution-apis
 
 https://ethereum.github.io/execution-apis/api-documentation/
 
-- `json-rpc`
-- `graphQL`
+- 共识层
+
+https://github.com/ethereum/beacon-APIs
 
 
 
@@ -292,7 +315,7 @@ https://ethereum.github.io/execution-apis/api-documentation/
 
 #### googel的链数据分析系列文章
 
-【*谷歌出的文章，必读】
+【谷歌出的文章，必读】
 
 https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset
 
@@ -302,15 +325,15 @@ https://github.com/blockchain-etl/ethereum-etl-airflow
 
 https://github.com/blockchain-etl/blockchain-etl-architecture
 
-![](img/blockchain_etl_architecture.svg)
+![](../img/blockchain_etl_architecture.svg)
 
-![](./img/extra-data.png)
+![](../img/extra-data.png)
 
-![](./img/load_data.png)
+![](../img/load_data.png)
 
 
 
-#### 以太坊基金关于链数据挑战赛的博客
+#### 以太坊基金关于链数据分析挑战赛的博客
 
 链接：https://blog.ethereum.org/2020/11/17/medalla-data-challenge-results
 
@@ -318,45 +341,37 @@ https://github.com/blockchain-etl/blockchain-etl-architecture
 
 
 
-
-
 #### 数据采集工具
 
-数据监听工具：https://github.com/HydroProtocol/ethereum-watcher
+【数据监听工具】https://github.com/HydroProtocol/ethereum-watcher
 
-合约监听工具：https://github.com/Neufund/smart-contract-watch
+【合约监听工具】https://github.com/Neufund/smart-contract-watch
 
 【合约监听工具】 https://github.com/vulcanize/eth-contract-watcher 
+
+【合约监听工具】https://github.com/Rennbon/ethmonitor
 
 https://github.com/vulcanize
 
 https://github.com/curvegrid/toy-block-explorer
 
-
-
-
-
-
-
 另一个etl的示例：【https://github.com/san089/goodreads_etl_pipeline】
-
-
-
-采集工具2：https://github.com/wealdtech/chaind
 
 
 
 #### 数据分析工具
 
-https://github.com/JadeYeung/Solidity-utils
+【解析数据**】
+
+【guess abi】https://github.com/JadeYeung/Solidity-utils
+
+【guess abi】https://abi.w1nt3r.xyz/
 
 
 
 #### 数据推送工具
 
 `kafka` `监控`
-
-
 
 
 
@@ -374,7 +389,7 @@ https://github.com/JadeYeung/Solidity-utils
 
 
 
-
+​	
 
 ## 智能合约的开发
 
